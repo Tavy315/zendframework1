@@ -147,8 +147,10 @@ class Zend_Dom_Query
     }
 
     /**
-     * @param DOMDocument $document
-     * @param string $encoding
+     * Set DOMDocument to query
+     *
+     * @param  DOMDocument $document
+     * @return Zend_Dom_Query
      */
     public function setDocumentDom(DOMDocument $document)
     {
@@ -318,7 +320,6 @@ class Zend_Dom_Query
      * Register XPath namespaces
      *
      * @param   array $xpathNamespaces
-     * @return  void
      */
     public function registerXpathNamespaces($xpathNamespaces)
     {
