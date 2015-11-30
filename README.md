@@ -7,27 +7,15 @@ Master: [![Build Status](https://api.travis-ci.org/tavy315/zendframework1.png?br
 RELEASE INFORMATION
 ===================
 
-Zend Framework 1.12.16 Release.
-Released on Sep 15, 2015.
+Zend Framework 1.12.17 Release.
+Released on Nov 30, 2015.
 
-IMPORTANT FIXES FOR 1.12.16
+IMPORTANT FIXES FOR 1.12.17
 ---------------------------
 
 This release contains security fixes:
 
-- **ZF2015-07**: A number of components, including `Zend_Cloud`,
- `Zend_Search_Lucene`, and `Zend_Service_WindowsAzure` were creating directories with
- a liberal umask that could lead to local arbitrary code execution and/or
- local privilege escalation. This release contains a patch that ensures the
- directories are created using permissions of 0775 and files using 0664
- (essentially umask 0002).
-
-- **ZF2015-08**: ZF2014-06 uncovered an issue in the sqlsrv adapter provided by
- the framework whereby null bytes were not filtered correctly when generating
- SQL. A reporter discovered the same vulnerability is present in our PDO implementation
- when used with pdo_dblib, and could potentially be applied to other PDO adapters.
- This release contains a patch to properly escape null bytes used in SQL queries
- across all PDO adapters shipped with the framework.
+- **ZF2015-09**: `Zend_Captcha_Word` generates a "word" for a CAPTCHA challenge by selecting a sequence of random letters from a character set. Prior to this version, the selection was performed using PHP's internal `array_rand()` function. This function does not generate sufficient entropy due to its usage of `rand()` instead of more cryptographically secure methods such as `openssl_pseudo_random_bytes()`. This could potentially lead to information disclosure should an attacker be able to brute force the random number generation. This release updates `Zend_Crypt_Math` to provide cryptographically secure RNG, and updates `Zend_Captcha_Word` to use these new facilities.
 
 See http://framework.zend.com/changelog for full details.
 
