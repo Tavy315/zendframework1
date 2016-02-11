@@ -81,7 +81,7 @@ class Zend_Db_Select
     const SQL_ASC        = 'ASC';
     const SQL_DESC       = 'DESC';
 
-    const REGEX_COLUMN_EXPR = '/^([\w]*\(([^\(\)]|(?1))*\))$/';
+    const REGEX_COLUMN_EXPR = '/^([\w]*\s*\(([^\(\)]|(?1))*\))$/';
 
     /**
      * Bind variables for query
@@ -831,7 +831,7 @@ class Zend_Db_Select
                 'schema'        => $schema,
                 'tableName'     => $tableName,
                 'joinCondition' => $cond
-                );
+            );
             while ($tmpFromParts) {
                 $currentCorrelationName = key($tmpFromParts);
                 $this->_parts[self::FROM][$currentCorrelationName] = array_shift($tmpFromParts);
