@@ -39,6 +39,8 @@ require_once 'Zend/View/Helper/Placeholder/Container/Standalone.php';
  * @method $this prependScript($script, $type = 'text/javascript', array $attrs = array())
  * @method $this setFile($src, $type = 'text/javascript', array $attrs = array())
  * @method $this setScript($script, $type = 'text/javascript', array $attrs = array())
+ * @method string getSeparator()
+ * @method Zend_View_Helper_Placeholder_Container_Abstract setSeparator($separator)
  */
 class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container_Standalone
 {
@@ -97,12 +99,11 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * Constructor
      *
      * Set separator to PHP_EOL.
-     *
-     * @return void
      */
     public function __construct()
     {
         parent::__construct();
+
         $this->setSeparator(PHP_EOL);
     }
 
@@ -112,11 +113,12 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
      * Returns headScript helper object; optionally, allows specifying a script
      * or script file to include.
      *
-     * @param  string $mode Script or file
-     * @param  string $spec Script/url
+     * @param  string $mode      Script or file
+     * @param  string $spec      Script/url
      * @param  string $placement Append, prepend, or set
-     * @param  array $attrs Array of script attributes
-     * @param  string $type Script type and/or array of script attributes
+     * @param  array  $attrs     Array of script attributes
+     * @param  string $type      Script type and/or array of script attributes
+     *
      * @return Zend_View_Helper_HeadScript
      */
     public function headScript($mode = Zend_View_Helper_HeadScript::FILE, $spec = null, $placement = 'APPEND', array $attrs = array(), $type = 'text/javascript')
@@ -143,9 +145,8 @@ class Zend_View_Helper_HeadScript extends Zend_View_Helper_Placeholder_Container
     /**
      * Start capture action
      *
-     * @param  mixed $captureType
+     * @param  mixed  $captureType
      * @param  string $typeOrAttrs
-     * @return void
      */
     public function captureStart($captureType = Zend_View_Helper_Placeholder_Container_Abstract::APPEND, $type = 'text/javascript', $attrs = array())
     {

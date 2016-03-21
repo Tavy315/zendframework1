@@ -27,7 +27,7 @@ require_once 'Zend/View/Helper/Placeholder/Registry.php';
 require_once 'Zend/View/Helper/Abstract.php';
 
 /**
- * Base class for targetted placeholder helpers
+ * Base class for targeted placeholder helpers
  *
  * @package    Zend_View
  * @subpackage Helper
@@ -53,16 +53,14 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
     protected $_regKey;
 
     /**
-     * Flag wheter to automatically escape output, must also be
-     * enforced in the child class if __toString/toString is overriden
-     * @var book
+     * Flag whether to automatically escape output, must also be
+     * enforced in the child class if __toString/toString is overridden
+     * @var bool
      */
     protected $_autoEscape = true;
 
     /**
      * Constructor
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -215,8 +213,10 @@ abstract class Zend_View_Helper_Placeholder_Container_Standalone extends Zend_Vi
      * Proxy to container methods
      *
      * @param  string $method
-     * @param  array $args
-     * @return mixed
+     * @param  array  $args
+     *
+     * @return $this|mixed
+     * @throws \Zend_View_Exception
      */
     public function __call($method, $args)
     {

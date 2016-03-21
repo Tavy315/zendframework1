@@ -58,9 +58,9 @@ class Zend_View_Helper_Placeholder_Registry
     protected $_items = array();
 
     /**
-     * Retrieve or create registry instnace
+     * Retrieve or create registry instance
      *
-     * @return void
+     * @return $this
      */
     public static function getRegistry()
     {
