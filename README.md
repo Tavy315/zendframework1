@@ -7,15 +7,19 @@ Master: [![Build Status](https://api.travis-ci.org/tavy315/zendframework1.png?br
 RELEASE INFORMATION
 ===================
 
-Zend Framework 1.12.17 Release.
-Released on Nov 30, 2015.
+Zend Framework 1.12.18 Release.
+Released on Apr 14, 2016.
 
-IMPORTANT FIXES FOR 1.12.17
+IMPORTANT FIXES FOR 1.12.18
 ---------------------------
 
 This release contains security fixes:
 
-- **ZF2015-09**: `Zend_Captcha_Word` generates a "word" for a CAPTCHA challenge by selecting a sequence of random letters from a character set. Prior to this version, the selection was performed using PHP's internal `array_rand()` function. This function does not generate sufficient entropy due to its usage of `rand()` instead of more cryptographically secure methods such as `openssl_pseudo_random_bytes()`. This could potentially lead to information disclosure should an attacker be able to brute force the random number generation. This release updates `Zend_Crypt_Math` to provide cryptographically secure RNG, and updates `Zend_Captcha_Word` to use these new facilities.
+- **ZF2016-01**: A number of classes, including `Zend_Filter_Encrypt`,
+ `Zend_Form_Element_Hash`, `Zend_Gdata_HttpClient`, `Zend_Ldap_Attribute`,
+ and `Zend_OpenId`, were using randomization methods with insufficient entropy.
+ They have been updated to each use `Zend_Crypt_Math`, and the latter was
+ updated to use PHP 7's `random_bytes()` and `random_int()` where feasible.
 
 See http://framework.zend.com/changelog for full details.
 
