@@ -749,7 +749,7 @@ abstract class Zend_Db_Table_Abstract
      */
     protected function _setupDatabaseAdapter()
     {
-        if (! $this->_db) {
+        if (!isset($this->_db)) {
             $this->_db = self::getDefaultAdapter();
             if (!$this->_db instanceof Zend_Db_Adapter_Abstract) {
                 require_once 'Zend/Db/Table/Exception.php';
@@ -773,7 +773,7 @@ abstract class Zend_Db_Table_Abstract
     {
         if (! $this->_name) {
             $this->_name = get_class($this);
-        } else if (strpos($this->_name, '.')) {
+        } elseif (strpos($this->_name, '.')) {
             list($this->_schema, $this->_name) = explode('.', $this->_name);
         }
     }
@@ -871,7 +871,7 @@ abstract class Zend_Db_Table_Abstract
      */
     protected function _setupPrimaryKey()
     {
-        if (!$this->_primary) {
+        if (!isset($this->_primary)) {
             $this->_setupMetadata();
             $this->_primary = array();
             foreach ($this->_metadata as $col) {
@@ -888,9 +888,9 @@ abstract class Zend_Db_Table_Abstract
                 require_once 'Zend/Db/Table/Exception.php';
                 throw new Zend_Db_Table_Exception("A table must have a primary key, but none was found for table '{$this->_name}'");
             }
-        } else if (!is_array($this->_primary)) {
+        } elseif (!is_array($this->_primary)) {
             $this->_primary = array(1 => $this->_primary);
-        } else if (isset($this->_primary[0])) {
+        } elseif (isset($this->_primary[0])) {
             array_unshift($this->_primary, null);
             unset($this->_primary[0]);
         }
@@ -1313,7 +1313,7 @@ abstract class Zend_Db_Table_Abstract
             }
             if ($numberTerms == 0) {
                 $numberTerms = $keyValuesCount;
-            } else if ($keyValuesCount != $numberTerms) {
+            } elseif ($keyValuesCount != $numberTerms) {
                 require_once 'Zend/Db/Table/Exception.php';
                 throw new Zend_Db_Table_Exception("Missing value(s) for the primary key");
             }
