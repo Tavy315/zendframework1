@@ -990,22 +990,17 @@ class Zend_Ldap
             require_once 'Zend/Ldap/Exception.php';
             throw new Zend_Ldap_Exception($this, 'searching: ' . $filter);
         }
-        if ($sort !== null && is_string($sort)) {
-            $isSorted = @ldap_sort($this->getResource(), $search, $sort);
-            if($isSorted === false) {
-                /**
-                 * @see Zend_Ldap_Exception
-                 */
-                require_once 'Zend/Ldap/Exception.php';
-                throw new Zend_Ldap_Exception($this, 'sorting: ' . $sort);
-            }
-        }
 
         /**
          * Zend_Ldap_Collection_Iterator_Default
          */
         require_once 'Zend/Ldap/Collection/Iterator/Default.php';
         $iterator = new Zend_Ldap_Collection_Iterator_Default($this, $search);
+        
+        if ($sort !== null && is_string($sort)) {
+            $iterator->sort($sort);
+        }
+        
         return $this->_createCollection($iterator, $collectionClass);
     }
 
