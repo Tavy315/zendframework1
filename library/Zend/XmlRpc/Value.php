@@ -486,19 +486,13 @@ abstract class Zend_XmlRpc_Value
      */
     protected static function _extractTypeAndValue(SimpleXMLElement $xml, &$type, &$value)
     {
-        foreach ($xml as $type => $value) {
-            $type = $value;
-            $value = $value;
-        }
+        list($type, $value) = each($xml);
 
         if (!$type and $value === null) {
             $namespaces = array('ex' => 'http://ws.apache.org/xmlrpc/namespaces/extensions');
             foreach ($namespaces as $namespaceName => $namespaceUri) {
                 $namespaceXml = $xml->children($namespaceUri);
-                foreach ($namespaceXml as $type => $value) {
-                    $type = $value;
-                    $value = $value;
-                }
+                list($type, $value) = each($namespaceXml);
                 if ($type !== null) {
                     $type = $namespaceName . ':' . $type;
                     break;
