@@ -789,7 +789,7 @@ abstract class Zend_Db_Table_Abstract
      */
     protected function _setupMetadata()
     {
-        if ($this->metadataCacheInClass() && (count($this->_metadata) > 0)) {
+        if ($this->metadataCacheInClass() && is_array($this->_metadata) && count($this->_metadata) > 0) {
             return true;
         }
 
@@ -1304,7 +1304,10 @@ abstract class Zend_Db_Table_Abstract
         $whereList = array();
         $numberTerms = 0;
         foreach ($args as $keyPosition => $keyValues) {
-            $keyValuesCount = count($keyValues);
+            // If the value is a string, cast it to int to be Countable.
+            // The coercion to array could be done first, but if so we
+            // are to be sure the string value is always '1'.
+            $keyValuesCount = gettype($keyValues) === 'string' ? (int) $keyValues : count($keyValues);
             // Coerce the values to an array.
             // Don't simply typecast to array, because the values
             // might be Zend_Db_Expr objects.
