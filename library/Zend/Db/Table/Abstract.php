@@ -789,7 +789,7 @@ abstract class Zend_Db_Table_Abstract
      */
     protected function _setupMetadata()
     {
-        if ($this->metadataCacheInClass() && (count($this->_metadata) > 0)) {
+        if ($this->metadataCacheInClass() && is_array($this->_metadata) && count($this->_metadata) > 0) {
             return true;
         }
 
