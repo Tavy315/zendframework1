@@ -1366,9 +1366,9 @@ abstract class Zend_Db_Table_Abstract
      * Honors the Zend_Db_Adapter fetch mode.
      *
      * @param null|string|array|Zend_Db_Table_Select $where  OPTIONAL An SQL WHERE clause or Zend_Db_Table_Select object.
-     * @param string|array                           $order  OPTIONAL An SQL ORDER clause.
-     * @param int                                    $count  OPTIONAL An SQL LIMIT count.
-     * @param int                                    $offset OPTIONAL An SQL LIMIT offset.
+     * @param null|string|array                      $order  OPTIONAL An SQL ORDER clause.
+     * @param null|int                               $count  OPTIONAL An SQL LIMIT count.
+     * @param null|int                               $offset OPTIONAL An SQL LIMIT offset.
      * @return Zend_Db_Table_Rowset_Abstract The row results per the Zend_Db_Adapter fetch mode.
      */
     public function fetchAll($where = null, $order = null, $count = null, $offset = null)
